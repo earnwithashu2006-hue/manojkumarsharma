@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manoj Kumar Sharma | BJP Leader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+        }
+
+        .profile-card {
+            background: #ffffff;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* BJP Saffron Theme Header */
+        .card-header {
+            background: linear-gradient(135deg, #FF6F00 0%, #FFA000 100%);
+            height: 130px;
+            position: relative;
+        }
+
+        /* BJP Logo Styling */
+        .party-logo {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            object-fit: contain;
+        }
+
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            object-fit: cover;
+            position: absolute;
+            bottom: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+
+        .card-body {
+            padding: 85px 25px 30px 25px;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 26px;
+            color: #1a365d;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .party-name {
+            font-size: 14px;
+            color: #FF6F00;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        /* ----- NAYA ADDITION: Auto-Scrolling Posts ----- */
+        .scrolling-wrapper {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .scrolling-track {
+            display: flex;
+            gap: 15px;
+            width: max-content;
+            /* 15s me left side move karega, infinite loop banega */
+            animation: scrollFeed 15s linear infinite; 
+        }
+
+        .scrolling-track:hover {
+            animation-play-state: paused; /* User jab touch karega toh scroll ruk jayega */
+        }
+
+        .post-card {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            background-color: #eee;
+        }
+
+        .post-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .badge-fb { background-color: #1877F2; }
+        .badge-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+
+        @keyframes scrollFeed {
+            0% { transform: translateX(0); }
+            /* 50% ki jagah apne hisab se track size ke anusaar set hota hai */
+            100% { transform: translateX(-50%); } 
+        }
+        /* ----------------------------------------------- */
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-whatsapp { background-color: #25D366; color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .btn-whatsapp:hover { background-color: #1ebd5a; }
+
+        .btn-facebook { background-color: #1877F2; color: white; }
+        .btn-facebook:hover { background-color: #166fe5; }
+
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; }
+
+        .btn-google { background-color: #ffffff; color: #333; border: 2px solid #e1e1e1; }
+        .btn-google:hover { border-color: #FF6F00; color: #FF6F00; }
+
+        .btn-website { background-color: #FF6F00; color: white; }
+        .btn-website:hover { background-color: #e65c00; }
+
+        .section-title {
+            text-align: left;
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+            margin: 15px 0 10px 0;
+            letter-spacing: 1px;
+            font-weight: bold;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 5px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .designer-credit {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .designer-link {
+            color: #FF6F00;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .designer-link:hover {
+            text-decoration: underline;
+            color: #e65c00;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="card-header">
+            <!-- BJP Ka Logo -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bharatiya_Janata_Party_logo.svg/1200px-Bharatiya_Janata_Party_logo.svg.png" alt="BJP Logo" class="party-logo">
+            
+            <!-- Manoj Kumar Sharma ji ki photo -->
+            <img src="https://via.placeholder.com/150" alt="Manoj Kumar Sharma" class="profile-pic">
+        </div>
+        
+        <div class="card-body">
+            <h1 class="name">Manoj Kumar Sharma</h1>
+            <p class="party-name">Samaaj Sevak </p>
+            <p class="tagline">🪷 "Sankalp Vikas Ka, Saath Janta Ka"</p>
+            
+            <p class="bio">
+                Maananiya Pradhan Mantri ji ke 'Sabka Saath, Sabka Vikas' ke nare ko aage badhate hue, main apne kshetra ke vikas aur janta ki seva ke liye purn roop se samarpit hoon.
+            </p>
+
+            <!-- Auto-Scrolling Posts Section -->
+            <h3 class="section-title">Naye Updates (Recent Posts)</h3>
+            <div class="scrolling-wrapper">
+                <div class="scrolling-track">
+                    <!-- Post 1 (Facebook) -->
+                    <div class="post-card">
+                        <div class="social-badge badge-fb">Facebook</div>
+                        <!-- Niche src="" me apni post ki image ka link lagayein -->
+                        <img src="https://www.facebook.com/share/r/1DsNeFhhX2/" alt="Facebook Post">
+                    </div>
+                    <!-- Post 2 (Instagram) -->
+                    <div class="post-card">
+                        <div class="social-badge badge-ig">Instagram</div>
+                        <img src="https://www.instagram.com/reel/DVqykYrksaE/?igsh=MXdlMHlkdXhkN3BwNQ==" alt="Instagram Post">
+                    </div>
+                    <!-- Post 3 (Facebook) -->
+                    <div class="post-card">
+                        <div class="social-badge badge-fb">Facebook</div>
+                        <img src="https://www.facebook.com/share/v/1HzBjK3tFJ/" alt="Facebook Post">
+                    </div>
+
+                    <!-- Note: Inhi 3 posts ko dobara paste kiya hai taaki continuous animation chale bina atke -->
+                    <div class="post-card">
+                        <div class="social-badge badge-fb">Facebook</div>
+                        <img src="https://www.facebook.com/share/p/14bzABtqaYr/" alt="Facebook Post">
+                    </div>
+                    <div class="post-card">
+                        <div class="social-badge badge-ig">Instagram</div>
+                        <img src="https://www.instagram.com/reel/DVqykYrksaE/?igsh=MXdlMHlkdXhkN3BwNQ==" alt="Instagram Post">
+                    </div>
+                    <div class="post-card">
+                        <div class="social-badge badge-fb">Facebook</div>
+                        <img src="https://www.facebook.com/share/p/1Ag5Vqxbgc/" alt="Facebook Post">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direct Contact -->
+            <h3 class="section-title">Hisseydar Banein</h3>
+            <div class="btn-group">
+                <a href="#" class="btn btn-whatsapp" target="https://whatsapp.com/channel/0029Vb7eMZ29xVJkE9Vivf3T">🟢 WhatsApp par Judein</a>
+            </div>
+
+            <!-- Social Media Links -->
+            <h3 class="section-title">Official Pages Par Judein</h3>
+            <div class="btn-group">
+                <a href="#" class="btn btn-facebook" target="https://www.facebook.com/share/186YccQjH1/?mibextid=wwXIfr">🔵 Official Facebook Page</a>
+                <a href="#" class="btn btn-google" target="https://www.facebook.com/profile.php?id=100013747905428">👤 Facebook Personal Profile</a>
+                <a href="#" class="btn btn-instagram" target="https://www.instagram.com/manojkumarsharma_up57">🟣 Instagram Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Manoj Kumar Sharma. All Rights Reserved.<br>
+        <div class="designer-credit">
+            Designed by Ashutosh | 
+            <a href="https://wa.me/917052464750?text=Hello%20Ashutosh,%20mujhe%20bhi%20website%20design%20karwani%20hai" class="designer-link" target="_blank">
+                For more info click here
+            </a>
+        </div>
+    </footer>
+
+</body>
+  </html>
